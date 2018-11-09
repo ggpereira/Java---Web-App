@@ -1,2 +1,2 @@
-# Java---Web-App
-Database project and management - Academic Work
+<h1>Java wep application</h1>
+<h2>Simple library management app</h2>
