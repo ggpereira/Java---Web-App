@@ -4,10 +4,11 @@
     <div class="register-form">
         <script type="text/javascript">
             initYearOptions('yearPicker');
+            initCountryOptions('countryPicker');
         </script>
 
         <h1>Cadastro</h1>
-        <form action="#" method="post">
+        <form action="#" method="post" autocomplete="off">
             <h2>Livro</h2>
             <input type="text" name="title" placeholder="Ex: As Crônicas de Nárnia">
             <input type="text" name="barcode" placeholder="Ex: 3849C823F">
@@ -19,11 +20,10 @@
             <input type="text" name="publisher_name" placeholder="Ex: LeYa">
             <input type="text" name="street_name" placeholder="Ex: Rua...">
             <input type="text" name="state_name" placeholder="Ex: Rio Grande do Sul">
-            <input type="text" name="country_name" placeholder="Ex: Brasil">
+            <select id="countryPicker" name="country"></select>
         </form>        
         <div>
 
-            </html>
+</html>
 
 
-<!--<h1>Cadastrar livros</h1>-->
