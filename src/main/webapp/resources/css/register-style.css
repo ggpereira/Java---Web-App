@@ -25,7 +25,7 @@ input[type="text"] {
     font-size: 18px;
 }
 
-select {
-    width: 250px;
-    height: 25px;
+.book-form {
+    padding-top: 5px;
+    padding-right: 2px;
 }
