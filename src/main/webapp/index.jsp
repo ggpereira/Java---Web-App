@@ -11,6 +11,8 @@
         
         <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" data-auto-replace-svg="nest"></script>
         <script src="resources/js/menu-sidebar.js"></script>
+        <script src="resources/js/jquery-3.3.1.js"></script>
+        <script src="resources/js/page-loader.js"></script>
     </head>
     <body>
         <div id="content">
@@ -27,7 +29,7 @@
                 </a>
 
                 <a href="#" class="item"><i class="fas fa-book icon"></i>Livros</a>
-                <a href="resources/pages/register.html" class="item"><i class="fas fa-database icon"></i>Cadastrar</a>
+                <a href="#" class="item" onClick="changeContent('#page-content', 'pages/register.jsp')"><i class="fas fa-database icon"></i>Cadastrar</a>
                 <a href="#" class="item last"><i class="fas fa-search icon"></i>Buscar</a>
 
                 <ul>
@@ -36,6 +38,10 @@
                     <li><a href="https://github.com/ggpereira" class="inline"><i class="fab fa-github"></i></a></li>
                     <li><a href="https://github.com/odcmello" class="inline"><i class="fab fa-github"></i></a></li>
                 </ul>
+            </div>
+            
+            <div id="page-content">
+                
             </div>
         </div>
     </body>
