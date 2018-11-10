@@ -27,6 +27,7 @@
                 <a href="#" class="close" onClick="closeSlideMenu()">
                     <i class="fas fa-times"></i>
                 </a>
+                <img class="menu-header" src="resources/img/illudlogo.png" heigth="47" width="150">
 
                 <a href="#" class="item"><i class="fas fa-book icon"></i>Livros</a>
                 <a href="#" class="item" onClick="changeContent('#page-content', 'pages/register.jsp')"><i class="fas fa-database icon"></i>Cadastrar</a>

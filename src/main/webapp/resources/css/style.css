@@ -28,6 +28,11 @@ body {
     color: #ccc;
 }
 
+.nav .menu-header {
+    position: relative;
+    left: 30px;
+}
+
 .nav {
     height: 100%;
     width: 0;

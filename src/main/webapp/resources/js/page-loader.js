@@ -1,4 +1,4 @@
-function changeContent(divname, filename) {
-    console.log("trocando para " + filename);
-    $(divname).load(filename);
+function changeContent(divname, path) {
+    console.log("trocando para " + path);
+    $(divname).load(path);
 }
