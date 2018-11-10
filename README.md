@@ -6,4 +6,5 @@
   <li>MySQL Connector 8.0.13</li>
   <li>MySQL 8.0</li>
   <li>Netbeans IDE</li>
+  <li>JQuery 3.3.1</li>
 </u>
