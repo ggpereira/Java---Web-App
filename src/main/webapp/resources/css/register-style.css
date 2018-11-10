@@ -1,0 +1,31 @@
+.form-header {
+    border-bottom: 3px solid;
+    border-color: #808080;
+    width: 80%;
+    text-transform: uppercase;
+    color: #282828;
+}
+
+.register-form {
+    font-family: Roboto;
+    font-weight: bold;
+    color: #282828;
+}
+
+label {
+    font-size: 25px;
+}
+
+input {
+    width: 250px;
+    height: 25px;
+}
+
+input[type="text"] {
+    font-size: 18px;
+}
+
+select {
+    width: 250px;
+    height: 25px;
+}

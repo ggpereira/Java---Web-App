@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="resources/css/register-style.css">
         
         <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" data-auto-replace-svg="nest"></script>
         <script src="resources/js/menu-sidebar.js"></script>
@@ -32,7 +33,7 @@
                 </a>
                 <img class="menu-header" src="resources/img/illudlogo.png" heigth="47" width="150">
 
-                <a href="#" class="item"><i class="fas fa-book icon"></i>Livros</a>
+                <a href="#" class="item" onClick="changeContent('#page-content', 'pages/books-page.jsp')"><i class="fas fa-book icon"></i>Livros</a>
                 <a href="#" class="item" onClick="changeContent('#page-content', 'pages/register.jsp')"><i class="fas fa-database icon"></i>Cadastrar</a>
                 <a href="#" class="item last"><i class="fas fa-search icon"></i>Buscar</a>
 
