@@ -5,6 +5,7 @@
 body {
     font-family: 'Alegreya Sans', sans-serif;
     overflow-x: hidden;
+    background-color: #e6e6e6;
 }
 
 #content {
@@ -62,7 +63,7 @@ body {
 
 .nav a.item:hover {
     color: #E5E5E5;
-    background-color: #008989;
+    background-color: #290a0a;
     transition: 0.4s;
 }
 
@@ -93,4 +94,3 @@ body {
 .nav ul li a.inline:hover {
     color: #00CCCC;
 }
-
