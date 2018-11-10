@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:800');
+
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+#content {
+    padding: 15px;
+    transition: margin-left 0.7s;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slide a {
+    color: #000;
+    font-size: 36px;
+}
+
+.nav .close {
+    position: absolute;
+    top: 8px;
+    right: 22px;
+    margin-left: 50px;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #282828;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.7s;
+}
+
+.nav a.item {
+    display: flex;
+    flex-direction: row;
+    padding: 18px 30px;
+    text-decoration: none;
+    color: #ccc;
+    background-color: #3d3d3d;
+    border-top: 1px solid #ccc;
+}
+
+.nav .last {
+    border-bottom: 1px solid #ccc;
+}
+
+.nav a.item:hover {
+    color: #E5E5E5;
+    background-color: #00CCCC;
+    transition: 0.4s;
+}
+
+.nav .icon {
+    padding-right: 10px;
+    font-size: 35px;    
+}
+
+.nav ul {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    margin-top: 50px;
+
+}
+
+.nav ul li {
+    list-style: none;
+
+}
+
+.nav ul a.inline{
+    font-size: 26px;
+    color: #ccc;
+    padding: 6px 5px;
+}
+
+.nav ul li a.inline:hover {
+    color: #00CCCC;
+}
+
