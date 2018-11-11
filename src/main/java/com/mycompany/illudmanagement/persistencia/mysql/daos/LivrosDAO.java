@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.illudmanagement.persistencia.mysql.daos;
-import persistencia.mysql.Registros;
+import com.mycompany.illudmanagement.persistencia.mysql.Registros;
 import com.mycompany.illudmanagement.modelo.Livro;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

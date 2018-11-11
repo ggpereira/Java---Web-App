@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import persistencia.mysql.Registros;
+import com.mycompany.illudmanagement.persistencia.mysql.Registros;
 import com.mycompany.illudmanagement.modelo.Editora;
 /**
  *

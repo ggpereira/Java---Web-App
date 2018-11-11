@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.illudmanagement.modelo;
-import persistencia.Registro;
+import com.mycompany.illudmanagement.persistencia.Registro;
 
 /**
  *

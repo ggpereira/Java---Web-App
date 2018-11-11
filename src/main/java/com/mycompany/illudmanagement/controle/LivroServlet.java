@@ -33,8 +33,32 @@ public class LivroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Autor aut = new Autor();
+        aut.setNome(request.getParameter("author"));
+        aut.setNacionalidade(request.getParameter("nacionalidade"));
         
+        Editora edit = new Editora();
+        edit.setNome(request.getParameter("publisher_name"));
+        edit.setRua(request.getParameter("street_name"));
+        edit.setEstado(request.getParameter("state_name"));
+        edit.setPais(request.getParameter("country"));
         
+        Livro liv = new Livro();
+        liv.setTitulo(request.getParameter("title"));
+        liv.setBarcode(Integer.parseInt(request.getParameter("barcode")));
+        liv.setAno(Integer.parseInt(request.getParameter("year")));
+        liv.setAutor(aut);
+        liv.setEditora(edit);
+        
+        LivrosDAO lDao = new LivrosDAO();
+        AutoresDAO aDao = new AutoresDAO();
+        EditorasDAO eDao = new EditorasDAO();
+        
+        aDao.inserir(aut);
+        
+        System.out.println("Titulo: " + liv.getTitulo());
+        System.out.println("Autor: " + liv.getAutor().getNome());
+        System.out.println("Editora: " + liv.getEditora().getNome());
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
    
