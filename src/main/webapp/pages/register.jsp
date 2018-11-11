@@ -13,38 +13,52 @@
         
         <form action="#" method="post" autocomplete="off">
             
-            <h2 style="font-size: 32px">Livro</h2>
-            
+            <h2>Livro</h2>
             <div class="book-form">
-                <label>Título</label>
-                <input type="text" name="title" placeholder="Ex: As Crônicas de Nárnia">
-                <label>Código de Barras</label>
-                <input type="text" name="barcode" placeholder="Ex: 3849C823F">
-                <label>Ano</label>
-                <select id="yearPicker" name="year"></select>
+                <p>
+                    <label for="">Título</label>
+                    <input type="text" name="title" placeholder="Ex: As Crônicas de Nárnia">
+                </p>
+                <p>
+                    <label for="">Código de Barras</label>
+                    <input type="text" name="barcode" placeholder="Ex: 3849C823F">
+                </p>
+                <p>
+                    <label for="">Ano</label>
+                    <select id="yearPicker" name="year" style="height: 30px;"></select>
+                </p>
             </div>
             
-            
-            <h2 style="font-size: 32px">Autor</h2>
-            
+            <h2>Autor</h2>
             <div class="author-form">
-                <label>Nome</label>
-                <input type="text" name="author" placeholder="Ex: J.R.R Tolkien">
-                <label>Nacionalidade</label>
-                <input type="text" name="nacionalidade" placeholder="Ex: Inglaterra">
+                <p>
+                    <label for="">Nome</label>
+                    <input type="text" name="author" placeholder="Ex: J.R.R Tolkien">
+                </p>
+                <p>
+                    <label for="">Nacionalidade</label>
+                    <input type="text" name="nacionalidade" placeholder="Ex: Inglaterra">
+                <p>
             </div>
-            
-            <h2 style="font-size: 32px">Editora</h2>
-            
+             
+            <h2>Editora</h2>
             <div class="publisher-form">
-                <label>Nome</label>
-                <input type="text" name="publisher_name" placeholder="Ex: LeYa">
-                <label>Rua</label>
-                <input type="text" name="street_name" placeholder="Ex: Rua...">
-                <label>Estado</label>
-                <input type="text" name="state_name" placeholder="Ex: Rio Grande do Sul">
-                <label>País</label>
-                <select id="countryPicker" name="country"></select>
+                <p>
+                    <label for="" >Nome</label>
+                    <input type="text" name="publisher_name" placeholder="Ex: LeYa">
+                </p>
+                <p>
+                    <label for="" >Rua</label>
+                    <input type="text" name="street_name" placeholder="Ex: Rua...">
+                </p>
+                <p>
+                    <label for="" >Estado</label>
+                    <input type="text" name="state_name" placeholder="Ex: Rio Grande do Sul">
+                </P>
+                <p>
+                    <label for="" >País</label>
+                    <select id="countryPicker" name="country" style="height: 30px; font-size: 16px"></select>
+                </p>
             </div>
         </form>        
     </div>

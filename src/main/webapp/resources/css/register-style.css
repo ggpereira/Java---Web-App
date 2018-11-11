@@ -13,7 +13,7 @@
 }
 
 label {
-    font-size: 25px;
+    font-size: 18px;
 }
 
 input {
@@ -26,6 +26,23 @@ input[type="text"] {
 }
 
 .book-form {
-    padding-top: 5px;
-    padding-right: 2px;
+    display:grid;
+    grid-template-columns:250px 250px 50px;
+    grid-template-rows: 70px;
+    grid-gap: 2px 15px;
+    margin-top: 0px;
+}
+
+.author-form{
+    display: grid;
+    grid-template-columns: 250px 250px;
+    grid-template-rows: 50px;
+    grid-gap: 2px 15px;
+}
+
+.publisher-form {
+    display: grid;
+    grid-template-columns: 250px 250px;
+    grid-template-rows: 55px;
+    grid-gap: 15px;
 }
