@@ -25,7 +25,7 @@
                 </p>
                 <p>
                     <label for="">Ano</label>
-                    <select id="yearPicker" name="year" style="height: 30px;"></select>
+                    <select id="yearPicker" name="year" style="font-size: 18px; height: 30px; border-radius: 5px"></select>
                 </p>
             </div>
             
@@ -57,7 +57,7 @@
                 </P>
                 <p>
                     <label for="" >País</label>
-                    <select id="countryPicker" name="country" style="height: 30px; font-size: 16px"></select>
+                    <select id="countryPicker" name="country" style="height: 30px; font-size: 18px; border-radius: 5px;"></select>
                 </p>
             </div>
         </form>        

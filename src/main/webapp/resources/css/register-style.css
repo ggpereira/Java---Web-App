@@ -19,6 +19,10 @@ label {
 input {
     width: 250px;
     height: 25px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color:  #8c8c8c;
+    border-width: thin;
 }
 
 input[type="text"] {
