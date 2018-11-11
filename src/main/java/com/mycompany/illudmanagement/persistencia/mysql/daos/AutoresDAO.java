@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.mysql.daos;
+package com.mycompany.illudmanagement.persistencia.mysql.daos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import persistencia.mysql.Registros;
-import modelo.Autor;
+import com.mycompany.illudmanagement.modelo.Autor;
 
 /**
  *

@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.mysql.daos;
+package com.mycompany.illudmanagement.persistencia.mysql.daos;
 import persistencia.mysql.Registros;
-import modelo.Livro;
+import com.mycompany.illudmanagement.modelo.Livro;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.ArrayList;
-import modelo.Editora;
-import modelo.Autor;
+import com.mycompany.illudmanagement.modelo.Editora;
+import com.mycompany.illudmanagement.modelo.Autor;
 
 /**
  *
@@ -21,7 +21,7 @@ import modelo.Autor;
 
 public class LivrosDAO extends Registros<Livro> {
     public LivrosDAO(){
-        setSqlInsercao("INSERT INTO books(barcode, title, _year, author_id) VALUES(?, ?, ?, ?, ?)");
+        setSqlInsercao("INSERT INTO books(barcode, title, _year, publisher_id, author_id) VALUES(?, ?, ?, ?, ?)");
         setSqlAtualiza("UPDATE books SET title = ?, publisher_id = ? WHERE book_code = ?");
         setSqlExclusao("DELETE FROM books WHERE book_code = ?");
         setSqlBusca("SELECT * FROM books WHERE book_code = ?");

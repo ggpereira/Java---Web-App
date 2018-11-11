@@ -11,7 +11,7 @@
             <h1>Cadastro</h1>
         </div>
         
-        <form action="#" method="post" autocomplete="off">
+        <form action="LivroServlet" method="post" autocomplete="off">
             
             <h2>Livro</h2>
             <div class="book-form">
@@ -60,6 +60,7 @@
                     <select id="countryPicker" name="country" style="height: 30px; font-size: 18px; border-radius: 5px;"></select>
                 </p>
             </div>
+            <input type="submit" value="Cadastrar">
         </form>        
     </div>
         
