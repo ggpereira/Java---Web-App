@@ -34,8 +34,8 @@ public class LivrosDAO extends Registros<Livro> {
         ps.setString(1, l.getBarcode());
         ps.setString(2, l.getTitulo());
         ps.setInt(3, l.getAno());
-        ps.setInt(4, l.getEditora().getId());
-        ps.setInt(5, l.getAutor().getId());
+        ps.setInt(4, hasAutor(l.getAutor()));
+        ps.setInt(5, hasEditora(l.getEditora()));
     }
     
     @Override
@@ -119,5 +119,31 @@ public class LivrosDAO extends Registros<Livro> {
         }
        
         return livros;
+    }
+    
+    public int hasAutor(Autor a) {
+        AutoresDAO autorDAO = new AutoresDAO();
+        Autor tempAutor = new Autor();
+        
+        if ((tempAutor = autorDAO.buscarNome(a)) == null){
+            a.setId(autorDAO.inserir(a));
+        } else {
+            a.setId(tempAutor.getId());
+        }
+        
+        return a.getId();
+    }
+    
+    public int hasEditora(Editora e) {
+        EditorasDAO editoraDAO = new EditorasDAO();
+        Editora tempEditora = new Editora();
+        
+        if((tempEditora = editoraDAO.buscarNome(e)) == null) {
+            e.setId(editoraDAO.inserir(e));
+        } else {
+            e.setId(tempEditora.getId());
+        }
+        
+        return e.getId();
     }
 }

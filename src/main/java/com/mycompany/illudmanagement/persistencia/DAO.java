@@ -13,7 +13,7 @@ import java.util.Collection;
  * @param <T>
  */
 public interface DAO <T extends Registro>{
-     void inserir(T t);
+     int inserir(T t);
      void deletar(T t);
      void modificar(T t);
      T buscar(T t);

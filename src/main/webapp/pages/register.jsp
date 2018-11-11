@@ -11,7 +11,7 @@
             <h1>Cadastro</h1>
         </div>
         
-        <form action="LivroServlet" method="post" autocomplete="off">
+        <form action="InsertLivroServlet" method="post" autocomplete="off">
             
             <h2>Livro</h2>
             <div class="book-form">

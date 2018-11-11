@@ -23,41 +23,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @WebServlet(name="LivroServlet", urlPatterns={"/LivroServlet"})
-public class LivroServlet extends HttpServlet {
+public class InsertLivroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Autor aut = new Autor();
-        aut.setNome(request.getParameter("author"));
+        aut.setNome(request.getParameter("author").toLowerCase());
         aut.setNacionalidade(request.getParameter("nacionalidade"));
         
         Editora edit = new Editora();
-        edit.setNome(request.getParameter("publisher_name"));
-        edit.setRua(request.getParameter("street_name"));
-        edit.setEstado(request.getParameter("state_name"));
-        edit.setPais(request.getParameter("country"));
+        edit.setNome(request.getParameter("publisher_name").toLowerCase());
+        edit.setRua(request.getParameter("street_name").toLowerCase());
+        edit.setEstado(request.getParameter("state_name").toLowerCase());
+        edit.setPais(request.getParameter("country").toLowerCase());
         
         Livro liv = new Livro();
-        liv.setTitulo(request.getParameter("title"));
-        liv.setBarcode(request.getParameter("barcode"));
+        liv.setTitulo(request.getParameter("title").toLowerCase());
+        liv.setBarcode(request.getParameter("barcode").toLowerCase());
         liv.setAno(Integer.parseInt(request.getParameter("year")));
         liv.setAutor(aut);
         liv.setEditora(edit);
         
-        AutoresDAO adao = new AutoresDAO();
-        Autor temp = new Autor();
-        temp = adao.buscarNome(aut);
-        
-        System.out.println("Parâmetro passado: " + aut.getNome());
-        
-        if(temp != null){
-            System.out.println("Retorno da busca: " + temp.getNome());
-        } else {
-            System.out.println("Retorno da busca: " + "vazio");
-        }
-               
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            
+        request.getRequestDispatcher("/IlludManagement").forward(request, response);
     }
 
    

@@ -77,18 +77,27 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
     
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
-    public void inserir(T t){
+    public int inserir(T t){
+        int chave = -1;
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement ps = conexao.prepareStatement(getSqlInsercao());
+            PreparedStatement ps = conexao.prepareStatement(getSqlInsercao(), Statement.RETURN_GENERATED_KEYS);
             preencherInsercao(ps, t);
             ps.execute();
+            
+            ResultSet chaveGerada = ps.getGeneratedKeys();
+            while(chaveGerada.next()) {
+                chave = chaveGerada.getInt(1);
+            }
+            
             ps.close();
             conexao.close();
         } catch(SQLException e){
             System.out.println("Erro ao inserir objeto!");
             e.printStackTrace();
         }
+        
+        return chave;
     }
     
     @Override
