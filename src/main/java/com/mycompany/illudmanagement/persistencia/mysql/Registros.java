@@ -25,6 +25,7 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
     private String sqlExclusao;
     private String sqlBusca;
     private String sqlBuscaTodos;
+    private String sqlBuscaNome;
 
     public void setSqlInsercao(String sqlInsercao) {
         this.sqlInsercao = sqlInsercao;
@@ -45,6 +46,10 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
     public void setSqlBuscaTodos(String sqlBuscaTodos) {
         this.sqlBuscaTodos = sqlBuscaTodos;
     }
+    
+    public void setSqlBuscaNome(String sqlBuscaNome) {
+        this.sqlBuscaNome = sqlBuscaNome;
+    }
 
     public String getSqlInsercao() {
         return sqlInsercao;
@@ -64,6 +69,10 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
 
     public String getSqlBuscaTodos() {
         return sqlBuscaTodos;
+    }
+    
+    public String getSqlBuscaNome() {
+        return sqlBuscaNome;
     }
     
     @Override
@@ -134,6 +143,26 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
         return tempObj;
     }
     
+    public T buscarNome(T t) {
+        Connection conexao = Conexao.getConexao();
+        T tempObj = null;
+        
+        try {
+            PreparedStatement ps = conexao.prepareStatement(getSqlBuscaNome());
+            preencherBuscaNome(ps, t);
+            ResultSet rs = ps.executeQuery();
+            tempObj = preencher(rs);
+            rs.close();
+            ps.close();
+            conexao.close();
+        } catch(SQLException e) {
+            System.out.println("Erro ao buscar objeto!");
+            e.printStackTrace();
+        }
+        
+        return tempObj;
+    }
+    
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public Collection<T> buscarTodos() {
@@ -158,8 +187,10 @@ public abstract class Registros <T extends Registro> implements DAO<T>{
     protected abstract void preencherExclusao(PreparedStatement ps, T t) throws SQLException;
     
     protected abstract void preencherBusca(PreparedStatement ps, T t) throws SQLException;
+    
+    protected abstract void preencherBuscaNome(PreparedStatement ps, T t) throws SQLException;
 
     protected abstract T preencher(ResultSet rs) throws SQLException;
 
     protected abstract Collection<T> preencherColecao(ResultSet rs) throws SQLException;
-}
+}  

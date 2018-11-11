@@ -23,6 +23,7 @@ public class EditorasDAO extends Registros<Editora>{
         setSqlExclusao("DELETE FROM publisher WHERE publisher_id = ?");
         setSqlBusca("SELECT * FROM publisher WHERE publisher_id = ?");
         setSqlBuscaTodos("SELECT * FROM publisher");
+        setSqlBuscaNome("SELECT * FROM publisher WHERE publisher_name = ?");
     }
     
     @Override
@@ -62,6 +63,11 @@ public class EditorasDAO extends Registros<Editora>{
         tempEditora.setEstado(rs.getString("state_name"));
         tempEditora.setPais(rs.getString("country_name"));
         return tempEditora;
+    }
+    
+    @Override
+    protected void preencherBuscaNome(PreparedStatement ps, Editora e) throws SQLException {
+        ps.setString(1, e.getNome());
     }
     
     @Override

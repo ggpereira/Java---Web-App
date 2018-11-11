@@ -19,17 +19,18 @@ import com.mycompany.illudmanagement.modelo.Autor;
  */
 public class AutoresDAO extends Registros<Autor> {
     public AutoresDAO(){
-        setSqlInsercao("INSERT INTO author(author_name, nacionalidade) VALUES(?, ?)");
-        setSqlAtualiza("UPDATE author SET author_name = ?, nacionalidade = ?");
+        setSqlInsercao("INSERT INTO author(author_name, nacionality) VALUES(?, ?)");
+        setSqlAtualiza("UPDATE author SET author_name = ?, nacionality = ?");
         setSqlExclusao("DELETE FROM author WHERE author_id = ?");
         setSqlBusca("SELECT * FROM author WHERE author_id = ?");
         setSqlBuscaTodos("SELECT * FROM author");
+        setSqlBuscaNome("SELECT * FROM author WHERE author_name = ?");
     }
     
     @Override
     protected void preencherInsercao(PreparedStatement ps, Autor a) throws SQLException{
         ps.setString(1, a.getNome());
-        ps.setString(1, a.getNacionalidade());
+        ps.setString(2, a.getNacionalidade());
     }
     
     @Override
@@ -51,12 +52,19 @@ public class AutoresDAO extends Registros<Autor> {
     }
     
     @Override
+    protected void preencherBuscaNome(PreparedStatement ps, Autor a) throws SQLException {
+        ps.setString(1, a.getNome());
+    }
+    
+    @Override
     protected Autor preencher(ResultSet rs) throws SQLException {
         Autor tempAutor = new Autor();
         
-        tempAutor.setId(rs.getInt("author_id"));
-        tempAutor.setNacionalidade(rs.getString("nacionality"));
-        tempAutor.setNome(rs.getString(rs.getString("author_name")));
+        while(rs.next()){
+            tempAutor.setId(rs.getInt("author_id"));
+            tempAutor.setNacionalidade(rs.getString("nacionality"));
+            tempAutor.setNome(rs.getString("author_name"));
+        }
         
         return tempAutor;
     }

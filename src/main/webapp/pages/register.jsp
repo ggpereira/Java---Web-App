@@ -21,7 +21,7 @@
                 </p>
                 <p>
                     <label for="">Código de Barras</label>
-                    <input type="text" name="barcode" placeholder="Ex: 38498232323">
+                    <input type="text" name="barcode" placeholder="Ex: 3U49G23F23">
                 </p>
                 <p>
                     <label for="">Ano</label>

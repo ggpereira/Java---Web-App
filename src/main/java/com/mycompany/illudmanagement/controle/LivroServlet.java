@@ -5,13 +5,9 @@
  */
 package com.mycompany.illudmanagement.controle;
 
-import com.mycompany.illudmanagement.modelo.Autor;
-import com.mycompany.illudmanagement.modelo.Editora;
-import com.mycompany.illudmanagement.modelo.Livro;
+import com.mycompany.illudmanagement.modelo.*;
 
-import com.mycompany.illudmanagement.persistencia.mysql.daos.AutoresDAO;
-import com.mycompany.illudmanagement.persistencia.mysql.daos.EditorasDAO;
-import com.mycompany.illudmanagement.persistencia.mysql.daos.LivrosDAO;
+import com.mycompany.illudmanagement.persistencia.mysql.daos.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,20 +40,23 @@ public class LivroServlet extends HttpServlet {
         
         Livro liv = new Livro();
         liv.setTitulo(request.getParameter("title"));
-        liv.setBarcode(Integer.parseInt(request.getParameter("barcode")));
+        liv.setBarcode(request.getParameter("barcode"));
         liv.setAno(Integer.parseInt(request.getParameter("year")));
         liv.setAutor(aut);
         liv.setEditora(edit);
         
-        LivrosDAO lDao = new LivrosDAO();
-        AutoresDAO aDao = new AutoresDAO();
-        EditorasDAO eDao = new EditorasDAO();
+        AutoresDAO adao = new AutoresDAO();
+        Autor temp = new Autor();
+        temp = adao.buscarNome(aut);
         
-        aDao.inserir(aut);
+        System.out.println("Parâmetro passado: " + aut.getNome());
         
-        System.out.println("Titulo: " + liv.getTitulo());
-        System.out.println("Autor: " + liv.getAutor().getNome());
-        System.out.println("Editora: " + liv.getEditora().getNome());
+        if(temp != null){
+            System.out.println("Retorno da busca: " + temp.getNome());
+        } else {
+            System.out.println("Retorno da busca: " + "vazio");
+        }
+               
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

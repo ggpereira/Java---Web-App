@@ -13,13 +13,13 @@ import com.mycompany.illudmanagement.persistencia.Registro;
 public class Livro extends Registro{
     private int codigo;
     private String titulo;
-    private int barcode;
+    private String barcode;
     private int ano;
     private Editora editora = new Editora();
     private Autor autor = new Autor();
     
     public Livro(){} //construtor padrão
-    public Livro(String titulo, int barcode, int ano, Editora editora, Autor autor){
+    public Livro(String titulo, String barcode, int ano, Editora editora, Autor autor){
         this.titulo = titulo;
         this.barcode = barcode;
         this.ano = ano;
@@ -35,7 +35,7 @@ public class Livro extends Registro{
         this.titulo = titulo;
     }
 
-    public void setBarcode(int barcode) {
+    public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 
@@ -63,7 +63,7 @@ public class Livro extends Registro{
         return titulo;
     }
 
-    public int getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 

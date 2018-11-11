@@ -26,11 +26,12 @@ public class LivrosDAO extends Registros<Livro> {
         setSqlExclusao("DELETE FROM books WHERE book_code = ?");
         setSqlBusca("SELECT * FROM books WHERE book_code = ?");
         setSqlBuscaTodos("SELECT * FROM books");
+        setSqlBuscaNome("SELECT * FROM books WHERE title = ?");
     }
     
     @Override
     protected void preencherInsercao(PreparedStatement ps, Livro l) throws SQLException{
-        ps.setInt(1, l.getBarcode());
+        ps.setString(1, l.getBarcode());
         ps.setString(2, l.getTitulo());
         ps.setInt(3, l.getAno());
         ps.setInt(4, l.getEditora().getId());
@@ -61,7 +62,7 @@ public class LivrosDAO extends Registros<Livro> {
         Livro tempLivro = new Livro();
         
         tempLivro.setCodigo(rs.getInt("book_code"));
-        tempLivro.setBarcode(rs.getInt("barcode"));
+        tempLivro.setBarcode(rs.getString("barcode"));
         tempLivro.setAno(rs.getInt("_year"));
         tempLivro.setTitulo(rs.getString("title"));
         
@@ -83,6 +84,11 @@ public class LivrosDAO extends Registros<Livro> {
         return tempLivro;
     }
     
+    @Override 
+    protected void preencherBuscaNome(PreparedStatement ps, Livro l) throws SQLException {
+        ps.setString(1, l.getTitulo());
+    }
+    
     @Override
     protected Collection<Livro> preencherColecao(ResultSet rs) throws SQLException {
         Collection<Livro> livros = new ArrayList<Livro>();
@@ -90,7 +96,7 @@ public class LivrosDAO extends Registros<Livro> {
         while(rs.next()){
             Livro tempLivro = new Livro();
             tempLivro.setCodigo(rs.getInt("book_code"));
-            tempLivro.setBarcode(rs.getInt("barcode"));
+            tempLivro.setBarcode(rs.getString("barcode"));
             tempLivro.setAno(rs.getInt("_year"));
             tempLivro.setTitulo(rs.getString("title"));
             
