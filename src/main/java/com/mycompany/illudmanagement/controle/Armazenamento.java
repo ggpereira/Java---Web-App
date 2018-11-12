@@ -6,6 +6,7 @@
 package com.mycompany.illudmanagement.controle;
 import com.mycompany.illudmanagement.modelo.*;
 import com.mycompany.illudmanagement.persistencia.mysql.daos.*;
+import java.util.Collection;
 
 /**
  *
@@ -13,14 +14,23 @@ import com.mycompany.illudmanagement.persistencia.mysql.daos.*;
  */
 public class Armazenamento {
     public static String storage_mode = "mysql";
-    public static LivrosDAO LivrosDAOmysql = new LivrosDAO(); 
+    public static LivrosDAO livrosDAOmysql = new LivrosDAO(); 
     // public static mongodb ....... 
     
     public static void inserirLivro(Livro liv) {
         if(storage_mode == "mysql") {
-            LivrosDAOmysql.inserir(liv);
+            livrosDAOmysql.inserir(liv);
         } else {
-            //aqui vai o insert do mongo
+            //aqui vai o insert do mongodb
+        }
+    }
+    
+    public static Collection<Livro> buscarTodos() {
+        if(storage_mode == "mysql") {
+            return livrosDAOmysql.buscarTodos();
+        } else {
+            //aqui vai o buscar do mongodb
+            return null;
         }
     }
     
