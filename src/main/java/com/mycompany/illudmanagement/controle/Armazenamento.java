@@ -18,9 +18,9 @@ public class Armazenamento {
     
     public static void inserirLivro(Livro liv) {
         if(storage_mode == "mysql") {
-            
+            LivrosDAOmysql.inserir(liv);
         } else {
-            
+            //aqui vai o insert do mongo
         }
     }
     

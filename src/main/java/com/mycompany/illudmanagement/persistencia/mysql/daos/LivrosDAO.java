@@ -21,7 +21,7 @@ import com.mycompany.illudmanagement.modelo.Autor;
 
 public class LivrosDAO extends Registros<Livro> {
     public LivrosDAO(){
-        setSqlInsercao("INSERT INTO books(barcode, title, _year, publisher_id, author_id) VALUES(?, ?, ?, ?, ?)");
+        setSqlInsercao("INSERT INTO books(barcode, title, _year, author_id, publisher_id) VALUES(?, ?, ?, ?, ?)");
         setSqlAtualiza("UPDATE books SET title = ?, publisher_id = ? WHERE book_code = ?");
         setSqlExclusao("DELETE FROM books WHERE book_code = ?");
         setSqlBusca("SELECT * FROM books WHERE book_code = ?");
@@ -59,27 +59,30 @@ public class LivrosDAO extends Registros<Livro> {
     
     @Override
     protected Livro preencher(ResultSet rs) throws SQLException {
-        Livro tempLivro = new Livro();
+        Livro tempLivro = null;
         
-        tempLivro.setCodigo(rs.getInt("book_code"));
-        tempLivro.setBarcode(rs.getString("barcode"));
-        tempLivro.setAno(rs.getInt("_year"));
-        tempLivro.setTitulo(rs.getString("title"));
+        while(rs.next()){
+            tempLivro = new Livro();
+            tempLivro.setCodigo(rs.getInt("book_code"));
+            tempLivro.setBarcode(rs.getString("barcode"));
+            tempLivro.setAno(rs.getInt("_year"));
+            tempLivro.setTitulo(rs.getString("title"));
         
-        //Preenche com editora correspondente ao livro
-        EditorasDAO eDao = new EditorasDAO();
-        Editora e = new Editora();
-        e.setId(rs.getInt("publisher_id"));
-        e = eDao.buscar(e);
+            //Preenche com editora correspondente ao livro
+            EditorasDAO eDao = new EditorasDAO();
+            Editora e = new Editora();
+            e.setId(rs.getInt("publisher_id"));
+            e = eDao.buscar(e);
         
-        //Preenche autor
-        AutoresDAO aDao = new AutoresDAO();
-        Autor a = new Autor();
-        a.setId(rs.getInt("author_id"));
-        a = aDao.buscar(a);
+            //Preenche autor
+            AutoresDAO aDao = new AutoresDAO();
+            Autor a = new Autor();
+            a.setId(rs.getInt("author_id"));
+            a = aDao.buscar(a);
         
-        tempLivro.setAutor(a);
-        tempLivro.setEditora(e);
+            tempLivro.setAutor(a);
+            tempLivro.setEditora(e);
+        }
         
         return tempLivro;
     }
@@ -123,12 +126,13 @@ public class LivrosDAO extends Registros<Livro> {
     
     public int hasAutor(Autor a) {
         AutoresDAO autorDAO = new AutoresDAO();
-        Autor tempAutor = new Autor();
+        Autor tempAutor = autorDAO.buscarNome(a);
         
-        if ((tempAutor = autorDAO.buscarNome(a)) == null){
-            a.setId(autorDAO.inserir(a));
-        } else {
+        
+        if(tempAutor != null) {
             a.setId(tempAutor.getId());
+        } else {
+            a.setId(autorDAO.inserir(a));
         }
         
         return a.getId();
@@ -136,13 +140,13 @@ public class LivrosDAO extends Registros<Livro> {
     
     public int hasEditora(Editora e) {
         EditorasDAO editoraDAO = new EditorasDAO();
-        Editora tempEditora = new Editora();
-        
-        if((tempEditora = editoraDAO.buscarNome(e)) == null) {
-            e.setId(editoraDAO.inserir(e));
-        } else {
+        Editora tempEditora = editoraDAO.buscarNome(e);
+       
+        if(tempEditora != null ) {
             e.setId(tempEditora.getId());
-        }
+        } else {
+           e.setId(editoraDAO.inserir(e));
+        }     
         
         return e.getId();
     }

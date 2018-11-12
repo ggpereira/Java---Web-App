@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author gabriel gomes
  */
 
-@WebServlet(name="LivroServlet", urlPatterns={"/LivroServlet"})
+@WebServlet(name="InsertLivroServlet", urlPatterns={"/InserLivroServlet"})
 public class InsertLivroServlet extends HttpServlet {
 
     @Override
@@ -45,8 +45,9 @@ public class InsertLivroServlet extends HttpServlet {
         liv.setAutor(aut);
         liv.setEditora(edit);
         
+        Armazenamento.inserirLivro(liv);
             
-        request.getRequestDispatcher("/IlludManagement").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
    

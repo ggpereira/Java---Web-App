@@ -3,7 +3,7 @@
 function initYearOptions(elementId) {
     var date = new Date();
     var currentYear = date.getFullYear();
-    var yearOptions = "<option value = 0>" + currentYear + "</options>";
+    var yearOptions = "<option value = " + currentYear +">" + currentYear + "</options>";
     //DESC SORT
     for (var i = currentYear; i >= 1900; i--) {
         yearOptions += "<option value = '" + i + "'}> " + i + " </option>";
@@ -16,7 +16,7 @@ function initYearOptions(elementId) {
 function initCountryOptions(elementId) {
     $.getJSON("resources/js/countries.json", 
         function(data){
-            var cOptions = "<option value = 0>" + "Brasil" + "</options>";
+            var cOptions = "<option value = Brasil>" + "Brasil" + "</options>";
             countries = data;
             console.log(countries.length);
             countries.forEach((data) => {

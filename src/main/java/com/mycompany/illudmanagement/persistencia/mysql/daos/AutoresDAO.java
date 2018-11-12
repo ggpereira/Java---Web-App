@@ -58,9 +58,10 @@ public class AutoresDAO extends Registros<Autor> {
     
     @Override
     protected Autor preencher(ResultSet rs) throws SQLException {
-        Autor tempAutor = new Autor();
+        Autor tempAutor = null;
         
         while(rs.next()){
+            tempAutor = new Autor();
             tempAutor.setId(rs.getInt("author_id"));
             tempAutor.setNacionalidade(rs.getString("nacionality"));
             tempAutor.setNome(rs.getString("author_name"));

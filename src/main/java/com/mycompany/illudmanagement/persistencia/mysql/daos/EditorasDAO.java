@@ -56,12 +56,17 @@ public class EditorasDAO extends Registros<Editora>{
     
     @Override
     protected Editora preencher(ResultSet rs) throws SQLException {
-        Editora tempEditora = new Editora();
-        tempEditora.setNome(rs.getString("publisher_name"));
-        tempEditora.setId(rs.getInt("publisher_id"));
-        tempEditora.setRua(rs.getString("street_name"));
-        tempEditora.setEstado(rs.getString("state_name"));
-        tempEditora.setPais(rs.getString("country_name"));
+        Editora tempEditora = null;
+        
+        while(rs.next()){
+            tempEditora = new Editora();
+            tempEditora.setNome(rs.getString("publisher_name"));
+            tempEditora.setId(rs.getInt("publisher_id"));
+            tempEditora.setRua(rs.getString("street_name"));
+            tempEditora.setEstado(rs.getString("state_name"));
+            tempEditora.setPais(rs.getString("country_name"));
+        }
+        
         return tempEditora;
     }
     
