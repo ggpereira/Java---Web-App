@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.ArrayList;
 import com.mycompany.illudmanagement.modelo.Livro;
+import javax.servlet.annotation.WebServlet;
 
 /**
  *
  * @author gabriel gomes
  */
+@WebServlet(name="ListaLivroServlet", urlPatterns={"/listarlivros"})
 public class ListarLivroServlet extends HttpServlet {
 
     @Override
@@ -31,6 +33,12 @@ public class ListarLivroServlet extends HttpServlet {
         livros = Armazenamento.buscarTodos();
         
         request.setAttribute("livros", livros);
+        
+        System.out.println("Buscando lista de livros");
+        for(Livro l : livros) {
+            System.out.println(l.getAno());
+            System.out.println(l.getTitulo());
+        }
         
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
