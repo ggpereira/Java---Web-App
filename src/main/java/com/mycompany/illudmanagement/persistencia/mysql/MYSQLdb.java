@@ -16,5 +16,6 @@ public class MYSQLdb {
     static final String SERVER_NAME = "localhost";
     static final String DATABASE = "illud_prototype";
     static final String TIMEZONE = "?useTimezone=true&serverTimezone=UTC";
-    static final String URL_CONEXAO = "jdbc:mysql://" + SERVER_NAME + "/" + DATABASE + TIMEZONE;
+    static final String SLL = "&useSSL=false";
+    static final String URL_CONEXAO = "jdbc:mysql://" + SERVER_NAME + "/" + DATABASE + TIMEZONE + SLL;
 }

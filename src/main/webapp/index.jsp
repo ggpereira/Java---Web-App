@@ -16,7 +16,6 @@
         <script src="resources/js/jquery-3.3.1.js"></script>
         <script src="resources/js/page-loader.js"></script>
         <script src="resources/js/selector-options.js"></script>
-      
         
     </head>
     <body>
