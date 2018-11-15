@@ -35,14 +35,14 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
     @SuppressWarnings("CallToPrintStackTrace")
     @Override
     public int inserir(T t) {
-        Document doc = prepararDocumento(t);
+        Document doc = transformarDocumento(t);
         collection.insertOne(doc);
         return 1;
     }
 
     @Override
     public void modificar(T t) {
-        Document doc = prepararDocumento(t);
+        Document doc = transformarDocumento(t);
         String documentId = getDocumentId(t);
         collection.updateOne(eq( "_id", new ObjectId(documentId)), new Document("$set", doc));
     }
@@ -63,14 +63,14 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
         Collection<T> registros = new ArrayList<>();
         String documentId = getDocumentId(t);
         for (Document cur : collection.find( eq("_id", new ObjectId(documentId))) )
-            registros.add( prepararRegistro(cur) );
+            registros.add( transformarRegistro(cur) );
         return (T) registros;
     }
 
     public T buscar(String id) {
         T registro = null;
         for (Document cur : collection.find( eq("_id", new ObjectId(id)) ))
-            registro = prepararRegistro(cur);
+            registro = transformarRegistro(cur);
         return registro;
     }
 
@@ -78,13 +78,11 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
     public Collection<T> buscarTodos() {
         Collection<T> registros = new ArrayList<>();
         for (Document cur : collection.find())
-            registros.add( prepararRegistro(cur) );
+            registros.add( transformarRegistro(cur) );
         return registros;
     }
 
     protected abstract String getDocumentId(T t);
-    
-    protected abstract Document prepararDocumento(T t);
-
-    protected abstract T prepararRegistro(Document doc);
+    protected abstract Document transformarDocumento(T t);
+    protected abstract T transformarRegistro(Document doc);
 }
