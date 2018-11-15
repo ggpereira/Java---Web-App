@@ -27,7 +27,7 @@ public class LivrosRest {
     @Path("/getAtualizaDado")
     @Produces(MediaType.APPLICATION_JSON)
     public Response postAtualizaLivro(Livro livro){
-        String result = "Atualizado " + livro;
+        String result = "{\"Atualizado\":\""+ livro +"\"}";
         Armazenamento.atualizarLivro(livro);
         return Response.status(201).entity(result).build();
     }
@@ -57,7 +57,6 @@ public class LivrosRest {
     @Path("/postLivros")
     public Response postGravarLivro(Livro livro) {
         String result = "Gravado: " + livro;
-        livro.setTitulo(livro.getTitulo().toLowerCase());
         Armazenamento.inserirLivro(livro);
         return Response.status(201).entity(result).build();
     }
