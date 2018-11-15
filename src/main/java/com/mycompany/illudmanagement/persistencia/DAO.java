@@ -16,6 +16,7 @@ public interface DAO <T extends Registro>{
      int inserir(T t);
      void deletar(T t);
      void modificar(T t);
+     T buscarNome(T t);
      T buscar(T t);
      Collection<T> buscarTodos();
 }

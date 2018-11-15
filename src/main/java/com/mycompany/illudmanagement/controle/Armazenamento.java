@@ -7,42 +7,54 @@ package com.mycompany.illudmanagement.controle;
 import com.mycompany.illudmanagement.modelo.*;
 import com.mycompany.illudmanagement.persistencia.mysql.daos.*;
 import java.util.Collection;
+import com.mycompany.illudmanagement.persistencia.DAO;
 
 /**
  *
  * @author gabri
  */
 public class Armazenamento {
+    public static DAO daoLivros = new LivrosDAO();
     public static String storage_mode = "mysql";
-    public static LivrosDAO livrosDAOmysql = new LivrosDAO(); 
-    // public static mongodb ....... 
     
     public static void inserirLivro(Livro liv) {
-        if(storage_mode == "mysql") {
-            livrosDAOmysql.inserir(liv);
-        } else {
-            //aqui vai o insert do mongodb
-        }
+       daoLivros.inserir(liv);
     }
     
     public static Collection<Livro> buscarTodos() {
-        if(storage_mode == "mysql") {
-            return livrosDAOmysql.buscarTodos();
-        } else {
-            //aqui vai o buscar do mongodb
-            return null;
-        }
+        return daoLivros.buscarTodos();
+    }
+    
+    public static void atualizarLivro(Livro liv) {
+        daoLivros.modificar(liv);
+    }
+    
+    public static void deletarLivro(Livro liv) {
+        daoLivros.deletar(liv);
+    }
+    
+    public static Livro buscarLivroId(Livro liv) {
+        return (Livro)daoLivros.buscar(liv);
+    }
+    
+    public static Livro buscarLivroNome(Livro liv) {
+        return (Livro)daoLivros.buscarNome(liv);
     }
     
     public static void toggleStorageMode(String mode) {
-        
-        //default
-        if(!"mysql".equals(mode) && !"mongodb".equals(mode)) {
-            storage_mode = "mysql";
-           
-        } else {
-            storage_mode = mode;
-        } 
+
+        switch(mode) {
+            case "mysql": 
+                daoLivros = new LivrosDAO();
+                storage_mode = "Mysql";
+                break;
+            case "mongodb": 
+                //daoLivros = new Mongo
+                storage_mode = "mongodb";
+                break;
+            default:
+                daoLivros = new LivrosDAO();
+        }
             
     }
     

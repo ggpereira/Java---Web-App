@@ -22,7 +22,7 @@ import com.mycompany.illudmanagement.modelo.Autor;
 public class LivrosDAO extends Registros<Livro> {
     public LivrosDAO(){
         setSqlInsercao("INSERT INTO books(barcode, title, _year, author_id, publisher_id) VALUES(?, ?, ?, ?, ?)");
-        setSqlAtualiza("UPDATE books SET title = ?, publisher_id = ? WHERE book_code = ?");
+        setSqlAtualiza("UPDATE books SET barcode = ?, title = ? , _year = ?, author_id = ?, publisher_id = ? WHERE book_code = ?");
         setSqlExclusao("DELETE FROM books WHERE book_code = ?");
         setSqlBusca("SELECT * FROM books WHERE book_code = ?");
         setSqlBuscaTodos("SELECT * FROM books");
@@ -40,9 +40,12 @@ public class LivrosDAO extends Registros<Livro> {
     
     @Override
     protected void preencherAlteracao(PreparedStatement ps, Livro l) throws SQLException {
-        ps.setString(1, l.getTitulo());
-        ps.setInt(2, l.getEditora().getId());
-        ps.setInt(3, l.getCodigo());
+        ps.setString(1, l.getBarcode());
+        ps.setString(2, l.getTitulo());
+        ps.setInt(3, l.getAno());
+        ps.setInt(4, hasAutor(l.getAutor()));
+        ps.setInt(5, hasEditora(l.getEditora()));
+        ps.setInt(6, l.getCodigo());
     }
     
     
