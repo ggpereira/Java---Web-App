@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Illud</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="shortcut icon" href="resources/img/illudlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <script src="resources/js/jquery-3.3.1.js"></script>
+    <script src="resources/js/page-loader.js"></script>
+    <script src="resources/js/selector-options.js"></script>
+</head>
+
+<body onload='changeContent("#content", "html/books.html")'>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <img src="resources/img/illudlogo.png" width="60px" height="52px">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick='changeContent("#content","html/register.html")'>Cadastro</a>
+                </li>
+                <li class="nav-item" onclick='changeContent("#content", "html/books.html")'>
+                    <a href="#" class="nav-link">Livros</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div id="content">
+        <!--Conteúdo da página-->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

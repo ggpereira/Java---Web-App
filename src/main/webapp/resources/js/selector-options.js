@@ -6,9 +6,10 @@ function initYearOptions(elementId) {
     var yearOptions = "<option value = " + currentYear +">" + currentYear + "</options>";
     //DESC SORT
     for (var i = currentYear; i >= 1900; i--) {
-        yearOptions += "<option value = '" + i + "'}> " + i + " </option>";
+        yearOptions += "<option value = '" + i + "'>" + i +"</option>";
     }
 
+    
     document.getElementById(elementId).innerHTML = yearOptions;
 }
 

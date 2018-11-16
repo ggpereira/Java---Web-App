@@ -1,0 +1,123 @@
+<div>
+    <form autocomplete="off" class="main-form needs-validation" id="livroForm" novalidate>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" name="titulo" id="titulo" placeholder="Ex: As crônicas de Nárnia" class="form-control"
+                        required>
+                    <div class="invalid-feedback">Por favor insira um título</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="barcode">Código de Barras</label>
+                    <input type="text" name="barcode" id="barcode" placeholder="Ex: 3GBFHGKKS2SSS" class="form-control"
+                        required>
+                    <div class="invalid-feedback">Por favor insira um Código</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="yearPicker">Ano</label>
+            <select id="yearPicker" name="year" class="form-control">
+                <!-- Opções de ano-->
+                <script type="text/javascript">
+                    initYearOptions('yearPicker');
+                </script>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nomeAutor">Nome do Autor</label>
+            <input type="text" name="nomeAutor" id="nomeAutor" placeholder="Ex: C.S Lewis" class="form-control"
+                required>
+            <div class="invalid-feedback">Por favor insira o nome do autor</div>
+        </div>
+
+        <div class="form-group">
+            <label for="nacionalidadeAutor">Nacionalidade do Autor</label>
+            <input type="text" name="nacionalidadeAutor" id="nacionalidadeAutor" placeholder="Ex: Irlandesa" class="form-control"
+                required>
+            <div class="invalid-feedback">Por favor insira a nacionalidade do autor</div>
+        </div>
+        <div class="form-group">
+            <label for="nomeEditora">Nome da Editora</label>
+            <input type="text" name="nomeEditora" id="nomeEditora" placeholder="Ex: Martins Fontes" class="form-control"
+                required>
+            <div class="invalid-feedback">Por favor insira o nome da editora</div>
+        </div>
+
+        <div class="form-group">
+            <label for="ruaEditora">Rua(Editora)</label>
+            <input type="text" name="ruaEditora" id="ruaEditora" placeholder="Ex: Rua. Laerte Ramos de Carvalho" class="form-control"
+                required>
+            <div class="invalid-feedback">Por favor insira a rua</div>
+        </div>
+        <div class="form-group">
+            <label for="cidadeEditora">Cidade(Editora)</label>
+            <input type="text" name="cidadeEditora" id="cidadeEditora" placeholder="Ex: São Paulo" class="form-control"
+                required>
+            <div class="invalid-feedback">Por favor insira uma cidade</div>
+        </div>
+        <div class="form-group">
+            <label for="countryPicker">País(Editora)</label>
+            <select id="countryPicker" name="country" class="form-control">
+                <!-- Opções de país-->
+                <script type="text/javascript">
+                    initCountryOptions('countryPicker');
+                </script>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var form = document.querySelector('.needs-validation');
+
+    form.addEventListener('submit', function () {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            alert("Dados inválidos");
+            return;
+        }
+
+
+        form.classList.add('was-validated');
+        event.preventDefault();
+        event.stopPropagation();
+        var livro = {
+            ano: $("#yearPicker").val(),
+            autor: {
+                nacionalidade: $("#nacionalidadeAutor").val(),
+                nome: $("#nomeAutor").val()
+            },
+            barcode: $("#barcode").val(),
+            editora:{
+                estado: $("#cidadeEditora").val(),
+                nome: $("#nomeEditora").val(),
+                pais: $("#countryPicker").val(),
+                rua: $("#ruaEditora").val()
+            },
+            titulo: $("#titulo").val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: "http://localhost:8080/app/recursos/livros/postLivros",
+            data: JSON.stringify(livro),
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    });
+
+
+</script>

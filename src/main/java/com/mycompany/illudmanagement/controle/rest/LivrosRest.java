@@ -56,6 +56,8 @@ public class LivrosRest {
     @POST
     @Path("/postLivros")
     public Response postGravarLivro(Livro livro) {
+        
+        System.out.println(livro);
         String result = "Gravado: " + livro;
         Armazenamento.inserirLivro(livro);
         return Response.status(201).entity(result).build();

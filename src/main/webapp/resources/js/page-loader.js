@@ -1,4 +1,4 @@
 function changeContent(divname, path) {
-    console.log("trocando para " + path);
+    //Troca o código html interno de uma div para o html indicado no path
     $(divname).load(path);
 }
