@@ -33,11 +33,13 @@ public class LivrosRest {
     }
     
     @POST
-    @Path("/deletaLivro")
+    @Path("/deletaLivro/{livroId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deletaLivro(Livro livro){
-        String result = "Deletado " + livro;
-        Armazenamento.deletarLivro(livro);
+    public Response deletaLivro(@PathParam("livroId") String livroCodigo){
+            String result = "{\"Deletado\":\""+ livroCodigo +"\"}";
+            Livro livro = new Livro();
+            livro.setCodigo(Integer.parseInt(livroCodigo));
+            Armazenamento.deletarLivro(livro);
         return Response.status(201).entity(result).build();
     }
     

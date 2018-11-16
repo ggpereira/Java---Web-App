@@ -4,13 +4,13 @@
         function generateCards(livro) {
             var card; 
 
-            var start = "<div class='card' style='width:18rem'>\n<div class='card-body'>\n";
+            var start = "<div class='card' style='width:18rem' id='" + livro.codigo +"' >\n<div class='card-body'>\n";
             var h5 = "<h5 class='card-title'>" + livro.titulo + "</h5>\n"
             var h6 = "<h6 class='card-subtitle mb-2 text-muted'>" + livro.barcode + "</h6>\n";
             var p = "<p class='card-text'>\n" + "Autor: " + livro.autor.nome + "<br>\n" + "Nacionalidade: " + livro.autor.nacionalidade + "<br>\n" + "Ano: " + livro.ano + "<br>\n"
                 + "Editora: " + livro.editora.nome + "<br>\n" + "Endereço: " + "Rua " + livro.editora.rua + ", " + livro.editora.estado + ", " + livro.editora.pais + "<br>\n" + "</p>\n";
             var button1 = "<button class='btn btn-primary'>Editar</button>\n";
-            var button2 = "<button class='btn btn-danger'>Deletar</button>\n";
+            var button2 = "<button class='btn btn-danger' onclick='"+ "deletar(" + livro.codigo + ")" +"'>Deletar</button>\n";
             
             card = start + h5 + h6 + p + button1 + button2;
 
@@ -32,5 +32,18 @@
                 }
             });
         });
+
+        function deletar(livroId) {
+            console.log("Deletando " + livroId);
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8080/app/recursos/livros/deletaLivro/' + livroId,
+                success: function (data) {
+                    console.log('sucess o livro foi', data);
+                    console.log("Removendo node " + "#" + livroId);
+                    window.location.reload(true);
+                }
+            });
+        }
     </script>
 </div>
