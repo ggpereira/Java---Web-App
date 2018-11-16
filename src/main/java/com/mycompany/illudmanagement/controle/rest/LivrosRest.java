@@ -71,4 +71,15 @@ public class LivrosRest {
     public String getStorageMode() {
         return "{\"DbMode\":\""+Armazenamento.storage_mode +"\"}";
     }
+    
+    @GET
+    @Path("/busca/{livroId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLivroId(@PathParam("livroId") String livroId) {
+        Livro lv_param = new Livro();
+        lv_param.setCodigo(Integer.parseInt(livroId));
+        Livro resp_livro = Armazenamento.buscarLivroId(lv_param);
+        Response response = Response.ok(resp_livro).build();
+        return response;
+    }
 }

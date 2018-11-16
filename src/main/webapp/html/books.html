@@ -2,26 +2,26 @@
     <!--Gera os cards-->
     <script>
         function generateCards(livro) {
-            var card; 
+            var card;
 
-            var start = "<div class='card' style='width:18rem' id='" + livro.codigo +"' >\n<div class='card-body'>\n";
+            var start = "<div class='card' style='width:18rem' id='" + livro.codigo + "' >\n<div class='card-body'>\n";
             var h5 = "<h5 class='card-title'>" + livro.titulo + "</h5>\n"
             var h6 = "<h6 class='card-subtitle mb-2 text-muted'>" + livro.barcode + "</h6>\n";
             var p = "<p class='card-text'>\n" + "Autor: " + livro.autor.nome + "<br>\n" + "Nacionalidade: " + livro.autor.nacionalidade + "<br>\n" + "Ano: " + livro.ano + "<br>\n"
                 + "Editora: " + livro.editora.nome + "<br>\n" + "Endereço: " + "Rua " + livro.editora.rua + ", " + livro.editora.estado + ", " + livro.editora.pais + "<br>\n" + "</p>\n";
-            var button1 = "<button class='btn btn-primary'>Editar</button>\n";
-            var button2 = "<button class='btn btn-danger' onclick='"+ "deletar(" + livro.codigo + ")" +"'>Deletar</button>\n";
-            
+            var button1 = "<button class='btn btn-primary' data-toggle='modal' data-target='#siteModal' onclick='buscar(" + livro.codigo +")'>Editar</button>\n";
+            var button2 = "<button class='btn btn-danger' onclick='" + "deletar(" + livro.codigo + ")" + "'>Deletar</button>\n";
+
             card = start + h5 + h6 + p + button1 + button2;
 
             return card;
         }
-        
+
         function generateNoData() {
-           var div = "<div style='margin: auto; width: 500px'>\n";
-           var h1 = "<h1>Não há dados para exibir</h1>";
-           var closeDiv = "</div>\n"
-           return div + h1 + closeDiv;
+            var div = "<div style='margin: auto; width: 500px'>\n";
+            var h1 = "<h1>Não há dados para exibir</h1>";
+            var closeDiv = "</div>\n"
+            return div + h1 + closeDiv;
         }
 
         $(function () {
@@ -32,13 +32,13 @@
                 url: 'http://localhost:8080/app/recursos/livros/getLivros',
                 success: function (data) {
                     console.log('sucess', data);
-                    if(data.length > 0){
+                    if (data.length > 0) {
                         data.forEach(element => {
-                        console.log(element);
-                        $livros.append(generateCards(element));
-                      });
+                            console.log(element);
+                            $livros.append(generateCards(element));
+                        });
                     } else {
-                      $livros.append(generateNoData());  
+                        $livros.append(generateNoData());
                     }
                 }
             });
@@ -55,5 +55,134 @@
                 }
             });
         }
+
+        //Guarda o livro para ser editado
+        var livro;
+        function buscar(livroId) {
+            console.log("Buscando " + livroId);
+              $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/app/recursos/livros/busca/' + livroId,
+                success: function (data) {
+                    console.log('sucess o livro buscado foi', data);
+                    $("#modalHeader").prepend("<h5 class='modal-title' id='modalTitle'>" + data.titulo + "</h5>");
+                    livro = data;
+                    $("#titulo").val(livro.titulo);
+                    $("#barcode").val(livro.barcode);
+                    $("#yearPicker").val(livro.ano);
+                    $("#nomeAutor").val(livro.autor.nome);
+                    $("#nacionalidadeAutor").val(livro.autor.nacionalidade);
+                    $("#nomeEditora").val(livro.editora.nome);
+                    $("#ruaEditora").val(livro.editora.rua);
+                    $("#cidadeEditora").val(livro.editora.estado);
+                    $("#countryPicker").val(livro.editora.pais);
+                }
+            });
+        }
+
+        function cleanModalTitle() {
+            //Limpa o título quando o modal é fechado
+            $("#modalTitle").remove();
+        }
+
+        function sendUpdate() {
+            console.log("Livro a ser atualizado");
+            console.log(livro);
+            cleanModalTitle();
+        }
     </script>
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" id="modalHeader">
+                <button type="button" class="close" data-dismiss="modal" onclick='cleanModalTitle()'>
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form autocomplete="off" class="form needs-validation" id="livroEditForm" novalidate>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="titulo">Título</label>
+                                <input type="text" name="titulo" id="titulo" placeholder="Ex: As crônicas de Nárnia"
+                                    class="form-control" required>
+                                <div class="invalid-feedback">Por favor insira um título</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="barcode">Código de Barras</label>
+                                <input type="text" name="barcode" id="barcode" placeholder="Ex: 3GBFHGKKS2SSS" class="form-control"
+                                    required>
+                                <div class="invalid-feedback">Por favor insira um Código</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yearPicker">Ano</label>
+                        <select id="yearPicker" name="year" class="form-control">
+                            <!-- Opções de ano-->
+                            <script type="text/javascript">
+                                initYearOptions('yearPicker');
+                            </script>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeAutor">Nome do Autor</label>
+                        <input type="text" name="nomeAutor" id="nomeAutor" placeholder="Ex: C.S Lewis" class="form-control"
+                            required>
+                        <div class="invalid-feedback">Por favor insira o nome do autor</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nacionalidadeAutor">Nacionalidade do Autor</label>
+                        <input type="text" name="nacionalidadeAutor" id="nacionalidadeAutor" placeholder="Ex: Irlandesa"
+                            class="form-control" required>
+                        <div class="invalid-feedback">Por favor insira a nacionalidade do autor</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeEditora">Nome da Editora</label>
+                        <input type="text" name="nomeEditora" id="nomeEditora" placeholder="Ex: Martins Fontes" class="form-control"
+                            required>
+                        <div class="invalid-feedback">Por favor insira o nome da editora</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ruaEditora">Rua(Editora)</label>
+                        <input type="text" name="ruaEditora" id="ruaEditora" placeholder="Ex: Rua. Laerte Ramos de Carvalho"
+                            class="form-control" required>
+                        <div class="invalid-feedback">Por favor insira a rua</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cidadeEditora">Cidade(Editora)</label>
+                        <input type="text" name="cidadeEditora" id="cidadeEditora" placeholder="Ex: São Paulo" class="form-control"
+                            required>
+                        <div class="invalid-feedback">Por favor insira uma cidade</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryPicker">País(Editora)</label>
+                        <select id="countryPicker" name="country" class="form-control">
+                            <!-- Opções de país-->
+                            <script type="text/javascript">
+                                initCountryOptions('countryPicker');
+                            </script>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick='sendUpdate()'>Enviar</button>
+            </div>
+        </div>
+
+    </div>
 </div>
