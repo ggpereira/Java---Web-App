@@ -9,7 +9,7 @@
             var h6 = "<h6 class='card-subtitle mb-2 text-muted'>" + livro.barcode + "</h6>\n";
             var p = "<p class='card-text'>\n" + "Autor: " + livro.autor.nome + "<br>\n" + "Nacionalidade: " + livro.autor.nacionalidade + "<br>\n" + "Ano: " + livro.ano + "<br>\n"
                 + "Editora: " + livro.editora.nome + "<br>\n" + "Endereço: " + "Rua " + livro.editora.rua + ", " + livro.editora.estado + ", " + livro.editora.pais + "<br>\n" + "</p>\n";
-            var button1 = "<button class='btn btn-primary' data-toggle='modal' data-target='#siteModal' onclick='buscar(" + livro.codigo +")'>Editar</button>\n";
+            var button1 = "<button class='btn btn-primary' data-toggle='modal' data-target='#siteModal' onclick='buscar(" + livro.codigo + ")'>Editar</button>\n";
             var button2 = "<button class='btn btn-danger' onclick='" + "deletar(" + livro.codigo + ")" + "'>Deletar</button>\n";
 
             card = start + h5 + h6 + p + button1 + button2;
@@ -60,7 +60,7 @@
         var livro;
         function buscar(livroId) {
             console.log("Buscando " + livroId);
-              $.ajax({
+            $.ajax({
                 type: 'GET',
                 url: 'http://localhost:8080/app/recursos/livros/busca/' + livroId,
                 success: function (data) {
@@ -86,9 +86,49 @@
         }
 
         function sendUpdate() {
-            console.log("Livro a ser atualizado");
-            console.log(livro);
+            console.log("Livro a ser atualizado", livro.codigo);
             cleanModalTitle();
+            
+            livro.titulo = $("#titulo").val();
+            livro.barcode = $("#barcode").val();
+            livro.ano = $("#yearPicker").val();
+            livro.autor.nome = $("#nomeAutor").val();
+            livro.autor.nacionalidade = $("#nacionalidadeAutor").val();
+            livro.editora.nome = $("#nomeEditora").val();
+            livro.editora.rua = $("#ruaEditora").val();
+            livro.editora.estado = $("#cidadeEditora").val();
+            livro.editora.pais = $("#countryPicker").val();
+            
+            console.log("Detalhes da alteração");
+            console.log(livro.autor);
+            console.log(livro.editora.nome);
+            console.log("Tamanho do barcode", livro.barcode.length);
+            console.log("Tamanho do titulo", livro.titulo.length);
+            if (validaLivro(livro)) {
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: "http://localhost:8080/app/recursos/livros/postAtualizaDado",
+                    data: JSON.stringify(livro),
+                    success: function (response) {
+                        console.log("Livro atualizado");
+                        console.log(response);
+                        window.location.reload(true);
+                    }
+                });
+            }
+        }
+
+        function validaLivro() {
+            if (livro.titulo.length > 0 && livro.ano > 0 && livro.barcode.length > 0) {
+                if (livro.autor.nome.length > 0 && livro.autor.nacionalidade.length > 0) {
+                    if (livro.editora.nome.length > 0 && livro.editora.rua.length > 0 && livro.editora.estado.length > 0 && livro.editora.pais.length > 0) {
+                        return true;
+                    }
+                }
+            }
+            alert("Dados inválidos");
+            return false;
         }
     </script>
 </div>
@@ -180,7 +220,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick='sendUpdate()'>Enviar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick='sendUpdate()'>Enviar</button>
             </div>
         </div>
 

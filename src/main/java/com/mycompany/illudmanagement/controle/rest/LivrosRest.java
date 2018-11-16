@@ -24,7 +24,7 @@ public class LivrosRest {
     }
     
     @POST
-    @Path("/getAtualizaDado")
+    @Path("/postAtualizaDado")
     @Produces(MediaType.APPLICATION_JSON)
     public Response postAtualizaLivro(Livro livro){
         String result = "{\"Atualizado\":\""+ livro +"\"}";
