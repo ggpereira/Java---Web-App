@@ -16,6 +16,13 @@
 
             return card;
         }
+        
+        function generateNoData() {
+           var div = "<div style='margin: auto; width: 500px'>\n";
+           var h1 = "<h1>Não há dados para exibir</h1>";
+           var closeDiv = "</div>\n"
+           return div + h1 + closeDiv;
+        }
 
         $(function () {
             var $livros = $('#card-list');
@@ -25,10 +32,14 @@
                 url: 'http://localhost:8080/app/recursos/livros/getLivros',
                 success: function (data) {
                     console.log('sucess', data);
-                    data.forEach(element => {
+                    if(data.length > 0){
+                        data.forEach(element => {
                         console.log(element);
                         $livros.append(generateCards(element));
-                    });
+                      });
+                    } else {
+                      $livros.append(generateNoData());  
+                    }
                 }
             });
         });
@@ -40,7 +51,6 @@
                 url: 'http://localhost:8080/app/recursos/livros/deletaLivro/' + livroId,
                 success: function (data) {
                     console.log('sucess o livro foi', data);
-                    console.log("Removendo node " + "#" + livroId);
                     window.location.reload(true);
                 }
             });
