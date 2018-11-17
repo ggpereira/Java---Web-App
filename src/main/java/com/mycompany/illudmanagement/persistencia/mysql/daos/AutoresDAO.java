@@ -20,7 +20,7 @@ import com.mycompany.illudmanagement.modelo.Autor;
 public class AutoresDAO extends Registros<Autor> {
     public AutoresDAO(){
         setSqlInsercao("INSERT INTO author(author_name, nacionality) VALUES(?, ?)");
-        setSqlAtualiza("UPDATE author SET author_name = ?, nacionality = ?");
+        setSqlAtualiza("UPDATE author SET author_name = ?, nacionality = ? WHERE author_id = ?");
         setSqlExclusao("DELETE FROM author WHERE author_id = ?");
         setSqlBusca("SELECT * FROM author WHERE author_id = ?");
         setSqlBuscaTodos("SELECT * FROM author");
@@ -37,6 +37,7 @@ public class AutoresDAO extends Registros<Autor> {
     protected void preencherAlteracao(PreparedStatement ps, Autor a) throws SQLException {
         ps.setString(1, a.getNome());
         ps.setString(2, a.getNacionalidade());
+        ps.setInt(3, a.getId());
     }
     
     

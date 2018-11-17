@@ -41,21 +41,21 @@ public class Armazenamento {
         return (Livro)daoLivros.buscarNome(liv);
     }
     
-    public static void toggleStorageMode(String mode) {
+    public static String toggleStorageMode(String mode) {
 
         switch(mode) {
             case "mysql": 
                 daoLivros = new LivrosDAO();
-                storage_mode = "Mysql";
+                storage_mode = "mysql";
                 break;
             case "mongodb": 
                 //daoLivros = new Mongo
                 storage_mode = "mongodb";
                 break;
             default:
-                daoLivros = new LivrosDAO();
+                System.out.println("Tentativa de opção incorreta");
         }
-            
+        return storage_mode;    
     }
     
     

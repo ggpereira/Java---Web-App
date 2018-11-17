@@ -15,7 +15,8 @@ and open the template in the editor.
     <link rel="shortcut icon" href="resources/img/illudlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
 
     <script src="resources/js/jquery-3.3.1.js"></script>
     <script src="resources/js/page-loader.js"></script>
@@ -48,7 +49,7 @@ and open the template in the editor.
         <div id="content">
             <!--Conteúdo da página-->
         </div>
- 
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -57,16 +58,41 @@ and open the template in the editor.
         crossorigin="anonymous"></script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 url: "http://localhost:8080/app/recursos/livros/storageMode",
                 success: function (data) {
                     console.log('sucess', data);
-                    $("#navBarItems").append("<li class='nav-item'><a class='nav-link'>" +  "<i class='fas fa-database'></i>" + data.DbMode.toUpperCase() +"</a></li>");
+                    $("#navBarItems").append("<li id='itemDb' class='nav-item'><a href='#' onclick='switchDb(" + "\"" + data.DbMode + "\"" + ")' class='nav-link'>" + "<i class='fas fa-database'></i>" + data.DbMode.toUpperCase() + "</a></li>");
                 }
             });
         })
+
+        function cleanDbContent() {
+            $("#itemDb").remove();
+        }
+
+        function switchDb(db_mode) {
+            console.log("Trocando de: " + db_mode);
+            cleanDbContent();
+            if (db_mode === "mysql") {
+                console.log("tem que mudar");
+                db_mode = "mongodb";
+            } else {
+                db_mode = "mysql";
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost:8080/app/recursos/livros/switchdb/" + db_mode,
+                success: function (data) {
+                    console.log('sucess banco de dados alterado', data);
+                    window.location.reload();
+                }
+            });
+
+        }
     </script>
 </body>
 

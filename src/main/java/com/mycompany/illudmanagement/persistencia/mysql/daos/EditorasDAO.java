@@ -19,7 +19,7 @@ import com.mycompany.illudmanagement.modelo.Editora;
 public class EditorasDAO extends Registros<Editora>{
     public EditorasDAO(){
         setSqlInsercao("INSERT INTO publisher(publisher_name, street_name, state_name, country_name) VALUES(?, ?, ?, ?)");
-        setSqlAtualiza("UPDATE publisher SET publisher_name = ? street_name = ? state_name = ?, country_name = ? WHERE publisher_id = ?");
+        setSqlAtualiza("UPDATE publisher SET publisher_name = ?, street_name = ?, state_name = ?, country_name = ? WHERE publisher_id = ?");
         setSqlExclusao("DELETE FROM publisher WHERE publisher_id = ?");
         setSqlBusca("SELECT * FROM publisher WHERE publisher_id = ?");
         setSqlBuscaTodos("SELECT * FROM publisher");
@@ -40,6 +40,7 @@ public class EditorasDAO extends Registros<Editora>{
         ps.setString(2, e.getRua());
         ps.setString(3, e.getEstado());
         ps.setString(4, e.getPais());
+        ps.setInt(5, e.getId());
     }
     
     

@@ -82,4 +82,13 @@ public class LivrosRest {
         Response response = Response.ok(resp_livro).build();
         return response;
     }
+    
+    @POST
+    @Path("/switchdb/{dbmode}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response switchDatabase(@PathParam("dbmode") String dbmode) {        
+        String result ="{\"DbMode\":\""+ Armazenamento.toggleStorageMode(dbmode) +"\"}";
+        Response response = Response.ok(result).build();
+        return response;
+    }
 }
