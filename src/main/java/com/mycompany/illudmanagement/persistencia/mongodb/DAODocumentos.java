@@ -50,15 +50,8 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
 
     @Override
     public T buscar(T t) {
-        Collection<T> registros = new ArrayList<>();
-        String documentId = getDocumentId(t);
-        for (Document cur : collection.find( eq("_id", new ObjectId(documentId))) )
-            registros.add( transformarRegistro(cur) );
-        return (T) registros;
-    }
-
-    public T buscar(String id) {
         T registro = null;
+        String id = getDocumentId(t);
         for (Document cur : collection.find( eq("_id", new ObjectId(id)) ))
             registro = transformarRegistro(cur);
         return registro;
