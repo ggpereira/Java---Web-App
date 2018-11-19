@@ -8,6 +8,7 @@ import com.mycompany.illudmanagement.modelo.*;
 import com.mycompany.illudmanagement.persistencia.mysql.daos.*;
 import java.util.Collection;
 import com.mycompany.illudmanagement.persistencia.DAO;
+import com.mycompany.illudmanagement.persistencia.mongodb.LivrosDAOMongo;
 
 /**
  *
@@ -49,7 +50,7 @@ public class Armazenamento {
                 storage_mode = "mysql";
                 break;
             case "mongodb": 
-                //daoLivros = new Mongo
+                daoLivros = new LivrosDAOMongo();
                 storage_mode = "mongodb";
                 break;
             default:

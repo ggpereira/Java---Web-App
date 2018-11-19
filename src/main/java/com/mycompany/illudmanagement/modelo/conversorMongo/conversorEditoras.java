@@ -24,7 +24,7 @@ public class conversorEditoras {
     public Editora converterRegistro(Document doc){
         Editora e =  new Editora();
         if(doc.get("id") != null)
-            e.setId((int) doc.get("id"));
+            e.setId((int)doc.get("id"));
         e.setNome((String) doc.get("nome"));
         e.setRua((String) doc.get("rua"));
         e.setEstado((String) doc.get("estado"));

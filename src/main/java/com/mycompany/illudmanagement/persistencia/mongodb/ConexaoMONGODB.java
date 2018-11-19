@@ -9,7 +9,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import java.net.UnknownHostException;
 import org.bson.Document;
 
 /**
@@ -18,6 +17,17 @@ import org.bson.Document;
  */
 public class ConexaoMONGODB {
     private static MongoClient mongoClient;
+    private static ConexaoMONGODB instancia;
+    
+    private ConexaoMONGODB() {
+        
+    }
+    
+    public static synchronized ConexaoMONGODB getInstancia() {
+        if (instancia == null)
+            instancia = new ConexaoMONGODB();
+        return instancia;
+    }
     
     public static MongoClient getMongoClient() {
         if (mongoClient == null) {

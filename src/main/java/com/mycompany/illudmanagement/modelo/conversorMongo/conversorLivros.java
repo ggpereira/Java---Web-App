@@ -22,8 +22,8 @@ public class conversorLivros {
     
     public Livro converterRegistro(Document doc){
         Livro l =  new Livro();
-        if(doc.get("codigo") != null)
-            l.setCodigo((int) doc.get("codigo"));
+        if(doc.get("_id") != null)
+            l.setCodigo(Integer.parseInt(doc.get("_id").toString()));
         l.setTitulo((String) doc.get("titulo"));
         l.setBarcode((String) doc.get("barcode"));
         l.setAno((int) doc.get("ano"));

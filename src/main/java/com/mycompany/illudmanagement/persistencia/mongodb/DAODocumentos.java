@@ -27,11 +27,6 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
         this.collection = ConexaoMONGODB.getUserCollection();
     }
 
-    /**
-     *
-     * @param t
-     * @return 
-     */
     @SuppressWarnings("CallToPrintStackTrace")
     @Override
     public int inserir(T t) {
@@ -50,14 +45,9 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
     @Override
     public void deletar(T t) {
         String documentId = getDocumentId(t);
-        collection.deleteOne( eq("_id",  new ObjectId(documentId)) );       
+        collection.deleteOne( eq("_id", new ObjectId(documentId)) );       
     }
 
-    /**
-     *
-     * @param t
-     * @return
-     */
     @Override
     public T buscar(T t) {
         Collection<T> registros = new ArrayList<>();
@@ -78,7 +68,7 @@ public abstract class DAODocumentos <T extends Registro> implements DAO<T> {
     public Collection<T> buscarTodos() {
         Collection<T> registros = new ArrayList<>();
         for (Document cur : collection.find())
-            registros.add( transformarRegistro(cur) );
+            registros.add(transformarRegistro(cur));
         return registros;
     }
 
