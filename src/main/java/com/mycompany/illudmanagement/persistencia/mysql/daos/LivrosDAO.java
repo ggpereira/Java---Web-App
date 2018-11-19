@@ -45,19 +45,19 @@ public class LivrosDAO extends Registros<Livro> {
         ps.setInt(3, l.getAno());
         ps.setInt(4, updateAutor(l.getAutor()));
         ps.setInt(5, updateEditora(l.getEditora()));
-        ps.setInt(6, l.getCodigo());
+        ps.setInt(6, Integer.parseInt(l.getCodigo()));
     }
     
     
     @Override
     protected void preencherExclusao(PreparedStatement ps, Livro l) throws SQLException {
-        ps.setInt(1, l.getCodigo());
+        ps.setInt(1, Integer.parseInt(l.getCodigo()));
         
     }
     
     @Override
     protected void preencherBusca(PreparedStatement ps, Livro l) throws SQLException {
-        ps.setInt(1, l.getCodigo());
+        ps.setInt(1, Integer.parseInt(l.getCodigo()));
     }
     
     @Override
@@ -66,7 +66,7 @@ public class LivrosDAO extends Registros<Livro> {
         
         while(rs.next()){
             tempLivro = new Livro();
-            tempLivro.setCodigo(rs.getInt("book_code"));
+            tempLivro.setCodigo(rs.getString("book_code"));
             tempLivro.setBarcode(rs.getString("barcode"));
             tempLivro.setAno(rs.getInt("_year"));
             tempLivro.setTitulo(rs.getString("title"));
@@ -101,7 +101,7 @@ public class LivrosDAO extends Registros<Livro> {
         
         while(rs.next()){
             Livro tempLivro = new Livro();
-            tempLivro.setCodigo(rs.getInt("book_code"));
+            tempLivro.setCodigo(rs.getString("book_code"));
             tempLivro.setBarcode(rs.getString("barcode"));
             tempLivro.setAno(rs.getInt("_year"));
             tempLivro.setTitulo(rs.getString("title"));

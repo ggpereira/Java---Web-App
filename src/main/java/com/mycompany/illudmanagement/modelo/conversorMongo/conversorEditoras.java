@@ -15,6 +15,7 @@ import org.bson.Document;
  * @author Otavio
  */
 public class conversorEditoras {
+    
     public Document converterDocumento(Livro l){
         Gson gson = new Gson();
         Document doc = Document.parse(gson.toJson(l));
@@ -22,13 +23,12 @@ public class conversorEditoras {
     }
     
     public Editora converterRegistro(Document doc){
+        Document edit = (Document) doc.get("editora");
         Editora e =  new Editora();
-        if(doc.get("id") != null)
-            e.setId((int)doc.get("id"));
-        e.setNome((String) doc.get("nome"));
-        e.setRua((String) doc.get("rua"));
-        e.setEstado((String) doc.get("estado"));
-        e.setPais((String) doc.get("pais"));
+        e.setNome((String) edit.get("nome"));
+        e.setRua((String) edit.get("rua"));
+        e.setEstado((String) edit.get("estado"));
+        e.setPais((String) edit.get("pais"));
         return e;
     }
 }

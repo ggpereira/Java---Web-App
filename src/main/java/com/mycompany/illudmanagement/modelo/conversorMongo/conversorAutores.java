@@ -21,11 +21,10 @@ public class conversorAutores {
     }
     
     public Autor converterRegistro(Document doc){
+        Document aut = (Document) doc.get("autor");
         Autor a =  new Autor();
-        if(doc.get("id") != null)
-            a.setId((int) doc.get("id"));
-        a.setNome((String) doc.get("nome"));
-        a.setNacionalidade((String) doc.get("nacionalidade"));
+        a.setNome((String) aut.get("nome"));
+        a.setNacionalidade((String) aut.get("nacionalidade"));
         return a;
     }
 }

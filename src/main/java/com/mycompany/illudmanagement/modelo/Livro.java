@@ -11,7 +11,7 @@ import com.mycompany.illudmanagement.persistencia.Registro;
  * @author gabriel gomes 
  */
 public class Livro extends Registro{
-    private int codigo;
+    private String codigo;
     private String titulo;
     private String barcode;
     private int ano;
@@ -27,7 +27,7 @@ public class Livro extends Registro{
         this.autor = autor;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -55,7 +55,7 @@ public class Livro extends Registro{
         return autor;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 

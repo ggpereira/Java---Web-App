@@ -18,8 +18,7 @@ public class LivrosRest {
     @Path("/getLivros")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Livro> getLivros() {
-        Collection<Livro> livros = Armazenamento.buscarTodos();
-        
+        Collection<Livro> livros = Armazenamento.buscarTodos();   
         return livros;
     }
     
@@ -38,7 +37,7 @@ public class LivrosRest {
     public Response deletaLivro(@PathParam("livroId") String livroCodigo){
             String result = "{\"Deletado\":\""+ livroCodigo +"\"}";
             Livro livro = new Livro();
-            livro.setCodigo(Integer.parseInt(livroCodigo));
+            livro.setCodigo(livroCodigo);
             Armazenamento.deletarLivro(livro);
         return Response.status(201).entity(result).build();
     }
@@ -77,7 +76,7 @@ public class LivrosRest {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLivroId(@PathParam("livroId") String livroId) {
         Livro lv_param = new Livro();
-        lv_param.setCodigo(Integer.parseInt(livroId));
+        lv_param.setCodigo(livroId);
         Livro resp_livro = Armazenamento.buscarLivroId(lv_param);
         Response response = Response.ok(resp_livro).build();
         return response;

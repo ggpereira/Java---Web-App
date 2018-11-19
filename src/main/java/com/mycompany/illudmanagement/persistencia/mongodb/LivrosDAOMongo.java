@@ -16,7 +16,7 @@ public class LivrosDAOMongo extends DAODocumentos<Livro> {
     
     @Override
     protected String getDocumentId(Livro e) {
-        return Integer.toString(e.getCodigo());
+        return e.getCodigo();
     }
     
     @Override
