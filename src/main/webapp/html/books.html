@@ -9,7 +9,7 @@
             var h6 = "<h6 class='card-subtitle mb-2 text-muted'>" + livro.barcode + "</h6>\n";
             var p = "<p class='card-text'>\n" + "Autor: " + livro.autor.nome + "<br>\n" + "Nacionalidade: " + livro.autor.nacionalidade + "<br>\n" + "Ano: " + livro.ano + "<br>\n"
                 + "Editora: " + livro.editora.nome + "<br>\n" + "Endereço: " + "Rua " + livro.editora.rua + ", " + livro.editora.estado + ", " + livro.editora.pais + "<br>\n" + "</p>\n";
-            var button1 = "<button class='btn btn-primary' data-toggle='modal' data-target='#siteModal' onclick='buscar(" + livro.codigo + ")'>Editar</button>\n";
+            var button1 = "<button class='btn btn-primary' data-toggle='modal' data-target='#siteModal' onclick='buscar(" + "\"" + livro.codigo.toString() + "\"" + ")'>Editar</button>\n";
             var button2 = "<button class='btn btn-danger' onclick='" + "deletar(" + "\"" + livro.codigo.toString() + "\"" + ")" + "'>Deletar</button>\n";
 
             card = start + h5 + h6 + p + button1 + button2;
@@ -86,7 +86,7 @@
         }
 
         function sendUpdate() {
-            console.log("Livro a ser atualizado", livro.codigo);
+            console.log("Livro a ser atualizado ", livro.codigo.toString());
             console.log("Enviando " + livro);
             cleanModalTitle();
             
