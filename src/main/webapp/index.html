@@ -88,7 +88,10 @@ and open the template in the editor.
                 url: "http://localhost:8080/app/recursos/livros/switchdb/" + db_mode,
                 success: function (data) {
                     console.log('sucess banco de dados alterado', data);
-                    window.location.reload();
+                    //window.location.reload();
+                    $("#navBarItems").append("<li id='itemDb' class='nav-item'><a href='#' onclick='switchDb(" + "\"" + db_mode + "\"" + ")' class='nav-link'>" + "<i class='fas fa-database'></i>" + data.DbMode.toUpperCase() + "</a></li>");
+                    changeContent("#content", "html/books.html");
+
                 }
             });
 

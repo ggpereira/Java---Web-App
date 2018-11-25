@@ -14,6 +14,6 @@ public class MONGOdb {
     static final String SERVER_NAME = "localhost";
     static final String DATABASE = "illud_prototype";
     static final String TIMEZONE = "?useTimezone=true&serverTimezone=UTC";
-    static final String URL_CONEXAO = "mongodb://" + SERVER_NAME + "/" + DATABASE + TIMEZONE;
+    static final String URL_CONEXAO = "mongodb://" + SERVER_NAME + "/" + DATABASE;
     static final String COLLECTION = "books";
 }

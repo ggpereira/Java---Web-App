@@ -12,7 +12,7 @@ package com.mycompany.illudmanagement.persistencia.mysql;
 public class MYSQLdb {
     public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String USUARIO = "root";
-    static final String SENHA = "098321";
+    static final String SENHA = "1234";
     static final String SERVER_NAME = "localhost";
     static final String DATABASE = "illud_prototype";
     static final String TIMEZONE = "?useTimezone=true&serverTimezone=UTC";
