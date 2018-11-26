@@ -18,8 +18,8 @@ import com.mycompany.illudmanagement.modelo.Editora;
 
 public class EditorasDAO extends Registros<Editora>{
     public EditorasDAO(){
-        setSqlInsercao("INSERT INTO publisher(publisher_name, street_name, state_name, country_name) VALUES(?, ?, ?, ?)");
-        setSqlAtualiza("UPDATE publisher SET publisher_name = ?, street_name = ?, state_name = ?, country_name = ? WHERE publisher_id = ?");
+        setSqlInsercao("INSERT INTO publisher(publisher_name, street_name, city_name, country_name) VALUES(?, ?, ?, ?)");
+        setSqlAtualiza("UPDATE publisher SET publisher_name = ?, street_name = ?, city_name = ?, country_name = ? WHERE publisher_id = ?");
         setSqlExclusao("DELETE FROM publisher WHERE publisher_id = ?");
         setSqlBusca("SELECT * FROM publisher WHERE publisher_id = ?");
         setSqlBuscaTodos("SELECT * FROM publisher");
@@ -30,7 +30,7 @@ public class EditorasDAO extends Registros<Editora>{
     protected void preencherInsercao(PreparedStatement ps, Editora e) throws SQLException{
         ps.setString(1, e.getNome());
         ps.setString(2, e.getRua());
-        ps.setString(3, e.getEstado());
+        ps.setString(3, e.getCidade());
         ps.setString(4, e.getPais());
     }
     
@@ -38,7 +38,7 @@ public class EditorasDAO extends Registros<Editora>{
     protected void preencherAlteracao(PreparedStatement ps, Editora e) throws SQLException {
         ps.setString(1, e.getNome());
         ps.setString(2, e.getRua());
-        ps.setString(3, e.getEstado());
+        ps.setString(3, e.getCidade());
         ps.setString(4, e.getPais());
         ps.setInt(5, e.getId());
     }
@@ -64,7 +64,7 @@ public class EditorasDAO extends Registros<Editora>{
             tempEditora.setNome(rs.getString("publisher_name"));
             tempEditora.setId(rs.getInt("publisher_id"));
             tempEditora.setRua(rs.getString("street_name"));
-            tempEditora.setEstado(rs.getString("state_name"));
+            tempEditora.setCidade(rs.getString("city_name"));
             tempEditora.setPais(rs.getString("country_name"));
         }
         
@@ -84,7 +84,7 @@ public class EditorasDAO extends Registros<Editora>{
             tempEditora.setNome(rs.getString("publisher_name"));
             tempEditora.setId(rs.getInt("publisher_id"));
             tempEditora.setRua(rs.getString("street_name"));
-            tempEditora.setEstado(rs.getString("state_name"));
+            tempEditora.setCidade(rs.getString("city_name"));
             tempEditora.setPais(rs.getString("country_name"));
             editoras.add(tempEditora);
         }

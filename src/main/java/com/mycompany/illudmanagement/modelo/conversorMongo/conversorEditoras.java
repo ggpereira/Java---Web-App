@@ -27,7 +27,7 @@ public class conversorEditoras {
         Editora e =  new Editora();
         e.setNome((String) edit.get("nome"));
         e.setRua((String) edit.get("rua"));
-        e.setEstado((String) edit.get("estado"));
+        e.setCidade((String) edit.get("cidade"));
         e.setPais((String) edit.get("pais"));
         return e;
     }

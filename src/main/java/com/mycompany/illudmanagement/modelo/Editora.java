@@ -14,15 +14,15 @@ public class Editora extends Registro {
     private int id;
     private String nome;
     private String rua;
-    private String estado;
+    private String cidade;
     private String pais;
     
     public Editora(){} //Construtor padrão
     
-    public Editora(String nome, String rua, String estado, String pais){
+    public Editora(String nome, String rua, String cidade, String pais){
         this.nome = nome;
         this.rua = rua;
-        this.estado = estado;
+        this.cidade = cidade;
         this.pais = pais;
     }
 
@@ -50,12 +50,12 @@ public class Editora extends Registro {
         this.rua = rua;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getPais() {
