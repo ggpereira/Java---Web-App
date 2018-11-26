@@ -34,8 +34,8 @@ public class LivrosDAO extends Registros<Livro> {
         ps.setString(1, l.getBarcode());
         ps.setString(2, l.getTitulo());
         ps.setInt(3, l.getAno());
-        ps.setInt(4, hasAutor(l.getAutor()));
-        ps.setInt(5, hasEditora(l.getEditora()));
+        ps.setInt(4,   insAutor(l.getAutor()));
+        ps.setInt(5, insEditora(l.getEditora()));
     }
     
     @Override
@@ -127,30 +127,19 @@ public class LivrosDAO extends Registros<Livro> {
         return livros;
     }
     
-    public int hasAutor(Autor a) {
+    public int insAutor(Autor a) {
         AutoresDAO autorDAO = new AutoresDAO();
-        Autor tempAutor = autorDAO.buscarNome(a);
-        
-        
-        if(tempAutor != null) {
-            a.setId(tempAutor.getId());
-        } else {
-            a.setId(autorDAO.inserir(a));
-        }
+       
+        a.setId(autorDAO.inserir(a));
         
         return a.getId();
     }
     
-    public int hasEditora(Editora e) {
+    public int insEditora(Editora e) {
         EditorasDAO editoraDAO = new EditorasDAO();
-        Editora tempEditora = editoraDAO.buscarNome(e);
        
-        if(tempEditora != null ) {
-            e.setId(tempEditora.getId());
-        } else {
-           e.setId(editoraDAO.inserir(e));
-        }     
-        
+        e.setId(editoraDAO.inserir(e));
+            
         return e.getId();
     }
     
@@ -159,27 +148,16 @@ public class LivrosDAO extends Registros<Livro> {
         AutoresDAO autorDAO = new AutoresDAO();
         Autor tempAutor = autorDAO.buscarNome(a);
         
-        
-        if(tempAutor != null) {
-            a.setId(tempAutor.getId());
-            autorDAO.modificar(a);
-        } else {
-            a.setId(autorDAO.inserir(a));
-        }
+        autorDAO.modificar(a);
+       
         
         return a.getId();
     }
     
     public int updateEditora(Editora e) {
         EditorasDAO editoraDAO = new EditorasDAO();
-        Editora tempEditora = editoraDAO.buscarNome(e);
        
-        if(tempEditora != null ) {
-            e.setId(tempEditora.getId());
-            editoraDAO.modificar(e);
-        } else {
-           e.setId(editoraDAO.inserir(e));
-        }     
+        editoraDAO.modificar(e);
         
         return e.getId();
     }
